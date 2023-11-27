@@ -132,20 +132,29 @@ echo "Contraseña de la base de datos actualizada en $config_file"
 
 #sed -i 's/""/"codepass"/g' /var/www/html/config.php
 
+# CODE tEST
+if test -f "/var/www/html/index.php"; then
+    echo "  "
+    echo -e "\n${LBLUE} CODIGO OK ...${NC}"
+fi
+
+
 echo  -e "\n${LGREEN} ########################################################################${NC}"
 echo  -e "\n${LGREEN} ##########################STAGE 3: [Deploy]#########################${NC}"
 echo  -e "\n${LGREEN} ########################################################################${NC}"
 
-#copy web files
-echo -e "\n${LYELLOW} Setting up WEB services ...${NC}"
-sleep 1 
-echo -e "FILES UPDATED"
 
 #Reload Apache service
 echo -e "\n${LYELLOW} Reloading Apache and Mariadb... ...${NC}"
 systemctl reload apache2
 systemctl restart mariadb
 echo -e "\n${LYELLOW} Apache and Mariadb reloaded  ...${NC}"
+
+#Verificar la aplicacion
+curl localhost
+#copy web files
+echo -e "\n${LYELLOW} Localhost OK ...${NC}"
+
 
 echo  -e "\n${LGREEN} ########################################################################${NC}"
 echo  -e "\n${LGREEN} ##########################STAGE 4: [Notify]#########################${NC}"
@@ -184,4 +193,3 @@ curl -X POST -H "Content-Type: application/json" \
 echo  -e "\n${LGREEN} #################"295DevOps Travel installation successfull"#############################${NC}"
 echo  -e "\n${LGREEN} ##################"Please go to http://localhost to test"#########################${NC}"
 echo  -e "\n${LGREEN} ########################################################################${NC}"
-
