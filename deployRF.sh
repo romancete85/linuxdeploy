@@ -88,6 +88,7 @@ else
     cd ${FOLDER}
     git pull origin clase2-linux-bash
     echo $FOLDER
+
     cp -r ~/$FOLDER/app-295devops-travel/* /var/www/html
 fi
 
@@ -138,16 +139,13 @@ echo  -e "\n${LGREEN} ##########################################################
 #copy web files
 echo -e "\n${LYELLOW} Setting up WEB services ...${NC}"
 sleep 1 
-cp -r ~/$FOLDER/app-295devops-travel/* /var/www/html
-
 echo -e "FILES UPDATED"
 
-
-
 #Reload Apache service
-echo "Reloading Apache..."
+echo -e "\n${LYELLOW} Reloading Apache and Mariadb... ...${NC}"
 systemctl reload apache2
 systemctl restart mariadb
+echo -e "\n${LYELLOW} Apache and Mariadb reloaded  ...${NC}"
 
 echo  -e "\n${LGREEN} ########################################################################${NC}"
 echo  -e "\n${LGREEN} ##########################STAGE 4: [Notify]#########################${NC}"
@@ -157,6 +155,7 @@ echo  -e "\n${LGREEN} ##########################################################
 #Discord web hook
 DISCORD=https://discord.com/api/webhooks/1154865920741752872/au1jkQ7v9LgQJ131qFnFqP-WWehD40poZJXRGEYUDErXHLQJ_BBszUFtVj8g3pu9bm7h
 
+#Variables
 REPO_NAME="romancete85/linuxdeploy"
 REPO_URL=https://github.com/$REPO_NAME
 WEB_URL="localhost"
@@ -185,3 +184,4 @@ curl -X POST -H "Content-Type: application/json" \
 echo  -e "\n${LGREEN} #################"295DevOps Travel installation successfull"#############################${NC}"
 echo  -e "\n${LGREEN} ##################"Please go to http://localhost to test"#########################${NC}"
 echo  -e "\n${LGREEN} ########################################################################${NC}"
+
